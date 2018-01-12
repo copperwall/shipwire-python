@@ -52,7 +52,7 @@ class ListResponseTestCase(TestCase):
         mock.side_effect = [fake_list_response([], next=p) for p in subsequent]
 
         sw_response = responses.ListResponse(initial_response, MagicMock())
-        sw_response.all_serial()
+        list(sw_response.all_serial())
 
         self.assertEqual(len(subsequent), mock.call_count)
 
@@ -65,4 +65,4 @@ class ListResponseTestCase(TestCase):
                             for i, p in enumerate(subsequent)]
 
         sw_response = responses.ListResponse(initial_response, MagicMock())
-        self.assertEqual([0, 1, 2, 3, 4], sw_response.all_serial())
+        self.assertEqual([0, 1, 2, 3, 4], list(sw_response.all_serial()))

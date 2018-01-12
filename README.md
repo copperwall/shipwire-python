@@ -115,7 +115,7 @@ response.next # returns a URL to the next group of items in the pagination
 response.offset # returns the nubmer of items offset by the current request
 response.items # returns a list of items in the current group
 response.limit # returns a count of the current group
-response.all() # returns a list of all the items in the entire selection. Please note that this method can be time consuming and lead to timeout errors by the Shipwire API.
+response.all() # returns a generator of all the items in the entire selection. Please note that this method can be time consuming and lead to timeout errors by the Shipwire API.
 ```
 
 ##### Unsuccessful requests:

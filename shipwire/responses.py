@@ -49,15 +49,15 @@ class ListResponse(ShipwireResponse):
         # loop over all items with previous and next
         next_uri = self.__next__
         req = self.response.request
-        items = self.items
+
+        for item in self.items:
+            yield item
 
         while next_uri:
             resp = requests.request(req.method, next_uri, auth=self.shipwire.auth)
             list_resp = ListResponse(resp, self.shipwire)
-            items.extend(list_resp.items)
+            yield from list_resp.items
             next_uri = list_resp.__next__
-
-        return items
 
 
 class CreateResponse(ListResponse):
